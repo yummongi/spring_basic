@@ -27,10 +27,10 @@ public class LoginController {
 		return "loginForm";
 	}
 	
-	//·Î±×¾Æ¿ô
+	//ë¡œê·¸ì•„ì›ƒ
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		//¼¼¼Ç Á¾·á 
+		//ì„¸ì…˜ ì¢…ë£Œ 
 		session.invalidate();
 		
 		return "redirect:/";
@@ -38,35 +38,35 @@ public class LoginController {
 	
 	@PostMapping("/login")
 	public String login(String  id, String pwd, boolean rememberId, String toURL, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//1. id ¿Í pwd È®ÀÎ
+		//1. id ì™€ pwd í™•ì¸
 		
 		System.out.println(id);
 		System.out.println(pwd);
 		System.out.println(rememberId);
-		//2-1.   ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é, loginForm À¸·Î ÀÌµ¿
+		//2-1.   ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´, loginForm ìœ¼ë¡œ ì´ë™
 		if(!loginCheck(id,pwd)) {
-			String msg = URLEncoder.encode("id ¶Ç´Â pwd°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.", "utf-8");
+			String msg = URLEncoder.encode("id ë˜ëŠ” pwdê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.", "utf-8");
 			
 			return "redirect:/login/login?msg=" + msg;
 		}
 		
-		//2-2. id ¿Í pwd°¡ ÀÏÄ¡ÇÏ¸é, 
-		//¼¼¼Ç °´Ã¼ ¾ò¾î¿À±â
+		//2-2. id ì™€ pwdê°€ ì¼ì¹˜í•˜ë©´, 
+		//ì„¸ì…˜ ê°ì²´ ì–»ì–´ì˜¤ê¸°
 		HttpSession session = request.getSession();
 		
 		
 		if(session != null) session.setAttribute("id",id);
-		//¼¼¼Ç °´Ã¼¿¡ id¸¦ ÀúÀå
+		//ì„¸ì…˜ ê°ì²´ì— idë¥¼ ì €ì¥
 		
-		//2-3 Ã¼Å© ¹Ú½º°¡ true¸é 
+		//2-3 ì²´í¬ ë°•ìŠ¤ê°€ trueë©´ 
 		if(rememberId) {
-			//      1. ÄíÅ°¸¦ »ı¼º
+			//      1. ì¿ í‚¤ë¥¼ ìƒì„±
 			Cookie cookie = new Cookie("id", id);
-			// 		2. ÀÀ´ä¿¡ ÀúÀå
+			// 		2. ì‘ë‹µì— ì €ì¥
 			response.addCookie(cookie);
-			// 		3. È¨À¸·Î ÀÌµ¿
+			// 		3. í™ˆìœ¼ë¡œ ì´ë™
 		}else {
-			//Ã¼Å© ¹Ú½º°¡ false ÄíÅ° »èÁ¦
+			//ì²´í¬ ë°•ìŠ¤ê°€ false ì¿ í‚¤ ì‚­ì œ
 			Cookie cookie = new Cookie("id",id);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);

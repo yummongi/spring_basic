@@ -7,22 +7,22 @@ import java.util.StringJoiner;
 public class MethodInfo {
 	public static void main(String[] args) throws Exception{
 		
-		// 1. YoilTeller Å¬·¡½ºÀÇ °´Ã¼¸¦ »ı¼º
+		// 1. YoilTeller í´ë˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìƒì„±
 		Class clazz = Class.forName("com.yummongi.app.YoilTellerMVC");
 		Object obj = clazz.newInstance();
 		
-		// 2. ¸ğµç ¸Ş¼Òµå Á¤º¸¸¦ °¡Á®¿Í¼­ ¹è¿­¿¡ ÀúÀå
+		// 2. ëª¨ë“  ë©”ì†Œë“œ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë°°ì—´ì— ì €ì¥
 		Method[] methodArr = clazz.getDeclaredMethods();
 		
-		// 3. ¹İº¹¹®À¸·Î ¸Ş¼Òµå¸¦ ÇÏ³ª¾¿ Ãâ·Â
+		// 3. ë°˜ë³µë¬¸ìœ¼ë¡œ ë©”ì†Œë“œë¥¼ í•˜ë‚˜ì”© ì¶œë ¥
 	
 		for(Method m : methodArr) {
-			String name = m.getName(); //¸Ş¼Òµå ÀÌ¸§
-			Parameter[] paramArr = m.getParameters(); //¸Å°Ôº¯¼ö ¸ñ·Ï
+			String name = m.getName(); //ë©”ì†Œë“œ ì´ë¦„
+			Parameter[] paramArr = m.getParameters(); //ë§¤ê²Œë³€ìˆ˜ ëª©ë¡
 //			Class[] paramTypeArr = m.getParameterTypes();
-			Class returnType = m.getReturnType(); //¸Ş¼ÒµåÀÇ ¹İÈ¯ Å¸ÀÔ
+			Class returnType = m.getReturnType(); //ë©”ì†Œë“œì˜ ë°˜í™˜ íƒ€ì…
 			
-			StringJoiner paramList = new StringJoiner(", ", "(", ")"); //±¸ºĞÀÚ , Á¢µÎ»ç ( Á¢¹Ì»ç )
+			StringJoiner paramList = new StringJoiner(", ", "(", ")"); //êµ¬ë¶„ì , ì ‘ë‘ì‚¬ ( ì ‘ë¯¸ì‚¬ )
 			
 			for(Parameter param : paramArr) {
 				String paramName = param.getName();

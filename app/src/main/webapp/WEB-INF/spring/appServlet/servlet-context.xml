@@ -10,8 +10,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
+	<annotation-driven validator="globalValidator"/>
+	<beans:bean id="globalValidator" class="com.yummongi.app.GlobalValidator"/>
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/**" location="/resources/" />
 
@@ -23,6 +23,27 @@
 	<!-- <view-controller path="/register/add" view-name="registerForm"/>-->
 	<context:component-scan base-package="com.yummongi.app" />
 	
-	
-	
+	<!-- MyException 사용자 예외 코드가 발생하였을 때 400번 에러가 발생하면서 error400.jsp 전환 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="defaultErrorView" value="error"/>
+    		<beans:property name="exceptionMappings">
+      			<beans:props>
+        			<beans:prop key="com.yummongi.app.MyException">error400</beans:prop>
+      			</beans:props>
+    		</beans:property>
+		<beans:property name="statusCodes">
+			<beans:props>
+        			<beans:prop key="error400">400</beans:prop>
+			</beans:props>
+		</beans:property>
+  	</beans:bean>	
+  	<!-- error_message.propertice 설정 데이터 검증 에러 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>error_message</beans:value> <!-- /src/main/resources/error_message.properties -->
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
 </beans:beans>

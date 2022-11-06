@@ -1,10 +1,19 @@
 package com.yummongi.app;
 
+import java.util.Arrays;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class User {
 	private String id;
 	private String pwd;
 	private String name;
 	private String email;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date birth;
+	private String[] sns;
+	private String[] hobby;
 	public String getId() {
 		return id;
 	}
@@ -29,24 +38,29 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
-	public String getSns() {
+	public String[] getSns() {
 		return sns;
 	}
-	public void setSns(String sns) {
+	public void setSns(String[] sns) {
 		this.sns = sns;
 	}
-	private String birth;
-	private String sns;
+	public String[] getHobby() {
+		return hobby;
+	}
+	public void setHobby(String[] hobby) {
+		this.hobby = hobby;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", birth=" + birth + ", sns="
-				+ sns + "]";
+				+ Arrays.toString(sns) + Arrays.toString(hobby)+"]";
 	}
 
 }

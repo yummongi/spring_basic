@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-//³â¿ùÀÏÀ» ÀÔ·ÂÇÏ¸é ¿äÀÏÀ» ¾Ë·ÁÁÖ´Â ÇÁ·Î±×·¥
+//ë…„ì›”ì¼ì„ ì…ë ¥í•˜ë©´ ìš”ì¼ì„ ì•Œë ¤ì£¼ëŠ” í”„ë¡œê·¸ë¨
 public class YoilTellerMVC6 {
 	
 	@ExceptionHandler(Exception.class)
@@ -34,20 +34,20 @@ public class YoilTellerMVC6 {
 		return "yoilError";
 	}
 	@RequestMapping("/getYoilMVC6") // http://localhost/app/getYoilMVC?year=2022&month=10&day=5
-//	public String main(@ModelAttribute("myDate") Mydate date, Model model) throws IOException {	//¾Æ·¡¿Í µ¿ÀÏ	
+//	public String main(@ModelAttribute("myDate") Mydate date, Model model) throws IOException {	//ì•„ë˜ì™€ ë™ì¼	
 	public String main(Mydate date,BindingResult result) {
 		
 		System.out.println("result= " + result);
-		//1. À¯È¿¼º °Ë»ç
+		//1. ìœ íš¨ì„± ê²€ì‚¬
 		if (!isValid(date))
 			return "yoilError";
 		
 /*
-@ModelAttribute ·Î ÀÎÇØ ³ÖÁö ¾Ê¾Æµµ µÊ
-		2. ¿äÀÏ °è»ê
+@ModelAttribute ë¡œ ì¸í•´ ë„£ì§€ ì•Šì•„ë„ ë¨
+		2. ìš”ì¼ ê³„ì‚°
 		char yoil = getYoil(date); 
 		
-		3. °è»êÇÑ °á°ú¸¦ model¿¡ ÀúÀå
+		3. ê³„ì‚°í•œ ê²°ê³¼ë¥¼ modelì— ì €ì¥
 		model.addAttribute("myDate", date);
 		model.addAttribute("yoil", yoil);
 */
@@ -63,7 +63,7 @@ public class YoilTellerMVC6 {
     	if(year==-1 || month==-1 || day==-1) 
     		return false;
     	
-    	return (1<=month && month<=12) && (1<=day && day<=31); // °£´ÜÈ÷ Ã¼Å© 
+    	return (1<=month && month<=12) && (1<=day && day<=31); // ê°„ë‹¨íˆ ì²´í¬ 
 	}
 	
 	private @ModelAttribute("yoil") char getYoil(Mydate date) {
@@ -76,7 +76,7 @@ public class YoilTellerMVC6 {
 		cal.set(year, month - 1, day);
 
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-		return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+		return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 	}
 
 }

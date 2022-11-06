@@ -2,44 +2,84 @@ package com.yummongi.app;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+@RequestMapping("/register")
 @Controller
 public class RegisterController {
+
+	//ì»¤ìŠ¤í…€ ë³€í™˜ê¸°
+	@InitBinder
+	public void toDate(WebDataBinder binder) {
+		ConversionService conversionService = binder.getConversionService();
+//		System.out.println("conversionService= " + conversionService);
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//		binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
+		binder.registerCustomEditor(String[].class,"hobby", new StringArrayPropertyEditor("#"));
+//		binder.setValidator(new UserValidator()); //UserValidatorë¥¼ WebDataBinderì˜ ë¡œì»¬ validator ë¡œ ë“±ë¡
+//		binder.addValidators(new UserValidator());
+		//í˜„ì¬ GlobalValidator ë¥¼ ë“±ë¡ëœ ìƒíƒœ
+		List<Validator> validatorList = binder.getValidators();
+		System.out.println("validatorList =" + validatorList);
+	}
 	
-//	@RequestMapping(value = "/register/add", method = {RequestMethod.GET, RequestMethod.POST}) //¾Æ·¡¿Í µ¿ÀÏ
-//	@RequestMapping("/register/add") //½Å±Ô È¸¿ø °¡ÀÔ È­¸é
-	//GET ¹æ½ÄÀ¸·Î¸¸ °¡´É
+//	@RequestMapping(value = "/register/add", method = {RequestMethod.GET, RequestMethod.POST}) //ì•„ë˜ì™€ ë™ì¼
+//	@RequestMapping("/register/add") //ì‹ ê·œ íšŒì› ê°€ì… í™”ë©´
+	//GET ë°©ì‹ìœ¼ë¡œë§Œ ê°€ëŠ¥
 //	@GetMapping("/register/add")
-	@RequestMapping("/register/add")
+	@GetMapping("/add")
 	public String register() {
+		
+	
 		return "registerForm"; //WEB-INF/views/registerForm.jsp
 	}
 	
-//	@RequestMapping(value = "register/save", method = RequestMethod.POST) //¾Æ·¡¿Í µ¿ÀÏ
-	//POST ¹æ½ÄÀ¸·Î¸¸ °¡´É
-	@PostMapping("/register/save") //Spring ¹öÀü 4.3 ºÎÅÍ
-	public String save(User user, Model m) throws Exception {
-		//1. À¯È¿¼º °Ë»ç
-		if(!isValid(user)) {
-			String msg = URLEncoder.encode("id¸¦ Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù!", "utf-8");
-			//return "redirect:/register/add?msg="+msg; //URL ÀçÀÛ¼º (rewriting)
-			m.addAttribute("msg", msg);
-			return "forward:/register/add";
+//	@RequestMapping(value = "register/save", method = RequestMethod.POST) //ì•„ë˜ì™€ ë™ì¼
+	//POST ë°©ì‹ìœ¼ë¡œë§Œ ê°€ëŠ¥
+	@PostMapping("/add") //Spring ë²„ì „ 4.3 ë¶€í„°
+	public String add(@Valid User user, BindingResult result, Model m) throws Exception {
+		
+//		//ìˆ˜ë™ ê²€ì¦
+//		UserValidator userValidator = new UserValidator();
+//		userValidator.validate(user, result); //BindingResultëŠ” Errorsì˜ ìì†
+//		
+		
+		//User ê°ì²´ë¥¼ ê²€ì¦í•œ ê²°ê³¼ ì—ëŸ¬ê°€ ìˆìœ¼ë©´, registerFormë¥¼ ì´ìš©í•´ì„œ ì—ëŸ¬ë¥¼ ë³´ì—¬ì¤˜ì•¼í•¨
+		if(result.hasErrors()) {
+			return "registerForm";
 		}
-		//2. DB¿¡ ½Å±Ô È¸¿ø Á¤º¸¸¦ ÀúÀå
+//		//1. ìœ íš¨ì„± ê²€ì‚¬
+//		if(!isValid(user)) {
+//			String msg = URLEncoder.encode("idë¥¼ ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤!", "utf-8");
+//			//return "redirect:/register/add?msg="+msg; //URL ì¬ì‘ì„± (rewriting)
+//			m.addAttribute("msg", msg);
+//			return "forward:/register/add";
+//		}
+		//2. DBì— ì‹ ê·œ íšŒì› ì •ë³´ë¥¼ ì €ì¥
 		return "registerInfo";
 	}
 
 	private boolean isValid(User user) {
-		return false;
+		return true;
 	}
 }

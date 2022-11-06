@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-//³â¿ùÀÏÀ» ÀÔ·ÂÇÏ¸é ¿äÀÏÀ» ¾Ë·ÁÁÖ´Â ÇÁ·Î±×·¥
+//ë…„ì›”ì¼ì„ ì…ë ¥í•˜ë©´ ìš”ì¼ì„ ì•Œë ¤ì£¼ëŠ” í”„ë¡œê·¸ë¨
 public class YoilTellerMVC2 {
 	
 	@ExceptionHandler(Exception.class)
@@ -29,15 +29,15 @@ public class YoilTellerMVC2 {
 			@RequestParam(required = true)int month,
 			@RequestParam(required = true)int day, Model model) throws IOException {
 		
-		//1. À¯È¿¼º °Ë»ç
+		//1. ìœ íš¨ì„± ê²€ì‚¬
 		if (!isValid(year, month, day))
 			return "yoilError";
 		
 		
-		//2. ¿äÀÏ °è»ê
+		//2. ìš”ì¼ ê³„ì‚°
 		char yoil = getYoil(year, month, day);
 		
-		//3. °è»êÇÑ °á°ú¸¦ model¿¡ ÀúÀå
+		//3. ê³„ì‚°í•œ ê²°ê³¼ë¥¼ modelì— ì €ì¥
 		model.addAttribute("year", year);
 		model.addAttribute("month", month);
 		model.addAttribute("day", day);
@@ -56,7 +56,7 @@ public class YoilTellerMVC2 {
 		cal.set(year, month - 1, day);
 
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-		return " ÀÏ¿ùÈ­¼ö¸ñ±İÅä".charAt(dayOfWeek);
+		return " ì¼ì›”í™”ìˆ˜ëª©ê¸ˆí† ".charAt(dayOfWeek);
 	}
 
 }

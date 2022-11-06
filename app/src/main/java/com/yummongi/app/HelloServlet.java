@@ -8,28 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//¸ÅÇÎ
+//ë§¤í•‘
 @WebServlet("/hello")
 public class HelloServlet extends HttpServlet{
 
 	@Override
 	public void init() throws ServletException {
-		//¼­ºí¸´ÀÌ ÃÊ±âÈ­µÉ ¶§ ÀÚµ¿ È£Ãâ µÇ´Â ¸Ş¼­µå
-		// 1. ¼­ºí¸´ÀÇ ÃÊ±âÈ­ ÀÛ¾÷ ´ã´ç
+		//ì„œë¸”ë¦¿ì´ ì´ˆê¸°í™”ë  ë•Œ ìë™ í˜¸ì¶œ ë˜ëŠ” ë©”ì„œë“œ
+		// 1. ì„œë¸”ë¦¿ì˜ ì´ˆê¸°í™” ì‘ì—… ë‹´ë‹¹
 		System.out.println("[HelloServlet] init() is called.");
 	}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 1. ÀÔ·Â
-		// 2. Ã³¸®
-		// 3. Ãâ·Â
+		// 1. ì…ë ¥
+		// 2. ì²˜ë¦¬
+		// 3. ì¶œë ¥
 		System.out.println("[HelloServlet] service() is called.");
 	}
 
 	@Override
 	public void destroy() {
-		// 3. µŞÁ¤¸® - ¼­ºí¸´ÀÌ ¸Ş¸ğ¸®¿¡¼­ Á¦°ÅµÉ¶§ ¼­ºí¸´ ÄÁÅ×ÀÌ³Ê¿¡ ÀÇÇØ¼­ ÀÚµ¿ È£Ãâ
+		// 3. ë’·ì •ë¦¬ - ì„œë¸”ë¦¿ì´ ë©”ëª¨ë¦¬ì—ì„œ ì œê±°ë ë•Œ ì„œë¸”ë¦¿ ì»¨í…Œì´ë„ˆì— ì˜í•´ì„œ ìë™ í˜¸ì¶œ
 		System.out.println("[HelloServlet] destroy() is called.");
 	}
 

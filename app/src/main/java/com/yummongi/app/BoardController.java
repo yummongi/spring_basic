@@ -14,18 +14,18 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(HttpServletRequest request) {
 		if(!loginCheck(request)) {
-			return "redirect:/login/login?toURL="+request.getRequestURL(); //·Î±×ÀÎÀ» ¾ÈÇßÀ¸¸é ·Î±×ÀÎ È­¸é ÀÌµ¿ GET ¹æ½ÄÀ¸·Î Àü¼Û
+			return "redirect:/login/login?toURL="+request.getRequestURL(); //ë¡œê·¸ì¸ì„ ì•ˆí–ˆìœ¼ë©´ ë¡œê·¸ì¸ í™”ë©´ ì´ë™ GET ë°©ì‹ìœ¼ë¡œ ì „ì†¡
 		}
-		return "boardList"; //·Î±×ÀÎÀ» ÇßÀ¸¸é °Ô½ÃÆÇ È­¸éÀ¸·Î ÀÌµ¿
+		return "boardList"; //ë¡œê·¸ì¸ì„ í–ˆìœ¼ë©´ ê²Œì‹œíŒ í™”ë©´ìœ¼ë¡œ ì´ë™
 	}
 
 	private boolean loginCheck(HttpServletRequest request) {
-		// 1. ¼¼¼ÇÀ» ¾ò¾î¼­
+		// 1. ì„¸ì…˜ì„ ì–»ì–´ì„œ
 		HttpSession session = request.getSession();
-		// 2. ¼¼¼Ç¿¡ id°¡ ÀÖ´ÂÁö È®ÀÎ, ÀÖÀ¸¸é true ¹İÈ¯
+		// 2. ì„¸ì…˜ì— idê°€ ìˆëŠ”ì§€ í™•ì¸, ìˆìœ¼ë©´ true ë°˜í™˜
 	
 		
-		return session.getAttribute("id") != null; //nullÀÌ ¾Æ´Ï¸é true
+		return session.getAttribute("id") != null; //nullì´ ì•„ë‹ˆë©´ true
 	}
 
 }

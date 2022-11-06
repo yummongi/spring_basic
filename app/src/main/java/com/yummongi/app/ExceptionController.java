@@ -16,25 +16,25 @@ public class ExceptionController {
 		return "error";
 	}
 	
-	//¿¹¿ÜÃ³¸® : GlobalCatcher.java
+	//ì˜ˆì™¸ì²˜ë¦¬ : GlobalCatcher.java
 	@RequestMapping("/ex")
 	public String main(Model m) throws Exception{
 		m.addAttribute("msg", "message from ExceptionController.main()");
-		throw new Exception("¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+		throw new Exception("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 	}
 
 	@RequestMapping("/ex2")
 	public String main2() throws Exception{
-		throw new Exception("¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+		throw new Exception("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 	}
 
 	@RequestMapping("/ex3")
 	public String main3() throws NullPointerException{
-		throw new NullPointerException("¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+		throw new NullPointerException("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 	}
 	
 	@RequestMapping("/ex4")
 	public String main4() throws FileNotFoundException{
-		throw new NullPointerException("¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+		throw new NullPointerException("ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 	}
 }

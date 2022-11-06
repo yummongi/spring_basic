@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//¸ğµç ÄÁÆ®·Ñ·¯¿¡¼­ ¹ß»ıÇÏ´Â ¿¹¿Ü¸¦ Ã³¸®
-//@ControllerAdvice("com.yummongi.app") //ÇØ´ç ÆĞÅ°Áö¿¡ Àû¿ë
-@ControllerAdvice //¸ğµç ÆĞÅ°Áö¿¡ Àû¿ë
+//ëª¨ë“  ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ë¥¼ ì²˜ë¦¬
+//@ControllerAdvice("com.yummongi.app") //í•´ë‹¹ íŒ¨í‚¤ì§€ì— ì ìš©
+@ControllerAdvice //ëª¨ë“  íŒ¨í‚¤ì§€ì— ì ìš©
 public class GlobalCatcher {
 	
 	@ExceptionHandler({NullPointerException.class,FileNotFoundException.class})
